@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt 
+from matplotlib import cm
+import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+a=6*np.pi
+x=np.arange(-1*a,a,0.1)
+y=np.arange(-1*a,a,0.1)
+x,y=np.meshgrid(y,x)
+f=0
+n=20
+w=0
+for i in range(0,n):
+    f+=(np.pi*(-1)**i/(2*i+2))*(np.cos(2*i*y/np.pi))+((-1)**(2*i+1)/(2*i+1))*(np.sin(x*(2*i)/np.pi))
+#     w+=(np.pi*(-1)**i/(2*i+2))*(np.cos(2*i*x/np.pi))
+z=f
+fig=plt.figure()
+ax=Axes3D(fig,auto_add_to_figure=False)
+fig.add_axes(ax)
+ax.plot_surface(x,y,f,cmap=cm.viridis)
+plt.figure(figsize=(15,12))
+plt.subplot(3,3,1)
+plt.plot(y,f)
+plt.subplot(3,3,4)
+plt.plot(x,f)
+plt.show()
