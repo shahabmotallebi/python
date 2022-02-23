@@ -1,0 +1,54 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Feb 22 05:23:23 2022
+
+@author: Home
+"""
+import matplotlib.pyplot as plt
+import numpy as np
+from functools import cache
+@cache
+class prime:
+    def __init__(self,n):
+        self.n=n
+    def is_prime(self):
+        isprime=True
+        for i in range(2,int(self.n**0.5)+1):
+            if self.n%i==0:
+                isprime=False
+                break
+        if isprime==True:
+            return 'p'
+        else:
+            return'n'
+    def list_prime(self):
+        listprime=[]
+        for i in range(2,self.n):
+            m=prime(i)
+            if m.is_prime()=='p':
+                listprime.append(i)
+        return listprime
+    def arry(self):
+        return np.array(self.list_prime())
+    def sum_prime(self):
+        s=0
+        for i in self.arry():
+            s+=i
+        return s
+    def mult_prime(self):
+        f=1
+        for i in self.arry():
+            f=f*i
+        return f
+    def plot_prime(self):
+        plt.plot(self.arry())
+n=int(input("enter as inte: \n"))        
+o=prime(n)
+print(o.list_prime())
+# print(o.arry())
+if n<=20:
+    print(f'sum:{o.sum_prime()}/_/_/_/_/_/mult:{o.mult_prime()}')
+# plt.figure()
+# o.plot_prime()
+# plt.show()
+input()
